@@ -1,0 +1,15 @@
+Zapojeni
+PC:ifconfig eth1 192.168.1.1 netmask 255.255.255.0
+R:enable, configure terminal, interface Gi0/0, ip address 192.168.1.2, no sh, do sh ip int br, kontrola: ping PC
+ARP
+PC:ping R, Wireshark na eth1, arp - pokud ex. zaznam: arp -d 192.168.1.2, ping R, arp
+Questions: ARP je volan, kdyz zarizeni nezna Mac adresu dalsiho zarizeni, broadcast, drzi si tabulku IP - Mac, Sitova vrstva
+DHCP
+R:ip add dhcp, no sh, do ping PC
+PC: zapnout DHCP
+Questions: 4 zpravy, cilove adresy jsou Router co rozdeluje DHCP a PC? 
+	Discover - existuje v siti DHCP? Posila se na broadcast
+	Offer - "rezervuje si" IP adresu, ale zatim ji nepriradi, - konfigurace site, IP vychozi brany, IP DNS sluzeb, maska, aktualni domena
+	Request - zopakuje informace v Offer, nyni uz Router(?) priradi IP adresu
+	Acknowledge - Router da vedet, ze tuhle IP adresu muze pouzivat
+Mac adresy, IP protokol, magic cookie DHCP, typ DHCP zpravy, hlavicky sitove i transportni(je to aplikacni vrstva)
